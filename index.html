@@ -1,1 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lyzzah Mhae Garcia | Front End Developer</title>
+  <meta name="description" content="Portfolio of Lyzzah Mhae Artillera Garcia, Junior Front End Developer and BS Information Technology student.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #fdf8f6;
+      --surface: #ffffff;
+      --text: #2b2330;
+      --muted: #6b6170;
+      --accent: #c2477a;
+      --accent-soft: #f7e3ec;
+      --border: #eee2e7;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+    /* Navigation */
+    header {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(253, 248, 246, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    nav { display: flex; justify-content: space-between; align-items: center; height: 64px; }
+    .logo { font-weight: 700; font-size: 1.2rem; color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .menu-btn { display: none; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 100px 0 80px; }
+    .hero p.hello { color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+    .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.2; margin-bottom: 12px; }
+    .hero h2 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 500; color: var(--muted); margin-bottom: 20px; }
+    .hero .intro { max-width: 600px; color: var(--muted); margin-bottom: 32px; }
+    .btn {
+      display: inline-block; padding: 12px 28px; border-radius: 30px;
+      font-weight: 600; transition: transform 0.2s, background 0.2s;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { transform: translateY(-2px); background: #a83a68; }
+    .btn-outline { border: 2px solid var(--accent); color: var(--accent); margin-left: 10px; }
+    .btn-outline:hover { background: var(--accent-soft); }
+
+    /* Sections */
+    section { padding: 70px 0; }
+    .section-title { font-size: 1.8rem; margin-bottom: 8px; }
+    .section-title span { color: var(--accent); }
+    .section-sub { color: var(--muted); margin-bottom: 36px; }
+
+    /* About */
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 32px; align-items: start; }
+    .about-text p { margin-bottom: 14px; color: var(--muted); }
+    .edu-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+    }
+    .edu-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .edu-card p { font-size: 0.9rem; color: var(--muted); }
+    .edu-card .tag {
+      display: inline-block; margin-top: 12px; padding: 4px 12px;
+      background: var(--accent-soft); color: var(--accent);
+      border-radius: 20px; font-size: 0.8rem; font-weight: 600;
+    }
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .skill-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 24px;
+    }
+    .skill-card h3 { font-size: 1rem; margin-bottom: 14px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      padding: 5px 14px; border-radius: 20px; font-size: 0.85rem;
+      background: var(--accent-soft); color: var(--accent); font-weight: 500;
+    }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 22px; }
+    .project-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 28px;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(194, 71, 122, 0.12); }
+    .project-card .icon { font-size: 2rem; margin-bottom: 12px; }
+    .project-card h3 { font-size: 1.1rem; margin-bottom: 10px; }
+    .project-card p { color: var(--muted); font-size: 0.92rem; margin-bottom: 16px; }
+    .project-card .tech { font-size: 0.8rem; font-weight: 600; color: var(--accent); }
+
+    /* Certificates */
+    .cert {
+      display: flex; gap: 16px; align-items: center;
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 16px; padding: 20px 24px;
+    }
+    .cert .icon { font-size: 1.8rem; }
+    .cert h3 { font-size: 1rem; }
+    .cert p { font-size: 0.88rem; color: var(--muted); }
+
+    /* Contact */
+    .contact { text-align: center; }
+    .contact .section-sub { max-width: 500px; margin: 0 auto 28px; }
+
+    footer {
+      text-align: center; padding: 24px 0; font-size: 0.85rem;
+      color: var(--muted); border-top: 1px solid var(--border);
+    }
+
+    .mini-title { font-size: 1rem; margin: 22px 0 10px; }
+    .project-card .contrib { font-size: 0.88rem; color: var(--text); background: var(--accent-soft); padding: 10px 12px; border-radius: 10px; }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 22px; }
+    .cert-card { max-width: 420px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .cert-card img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block; background: var(--accent-soft); border-bottom: 1px solid var(--border); }
+    .cert-info { padding: 20px 22px; }
+    .cert-type { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+    .cert-info h3 { font-size: 1rem; margin: 4px 0 6px; }
+    .cert-info p { font-size: 0.88rem; color: var(--muted); }
+    .cert-link { display: inline-block; margin-top: 10px; font-weight: 600; font-size: 0.9rem; color: var(--accent); }
+    .resume-box { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 36px; }
+    .resume-box .section-sub { margin-bottom: 0; }
+    .email-text { margin-top: 16px; color: var(--muted); font-size: 0.9rem; }
+
+    /* Mobile */
+    @media (max-width: 700px) {
+      .menu-btn { display: block; }
+      .nav-links {
+        display: none; position: absolute; top: 64px; left: 0; right: 0;
+        flex-direction: column; gap: 0; background: var(--bg);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { display: block; padding: 14px 20px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .hero { padding: 70px 0 50px; }
+      .btn-outline { margin-left: 0; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav class="container">
+      <a href="#home" class="logo">Lyzzah.</a>
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">&#9776;</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero" id="home">
+      <div class="container">
+        <p class="hello">Hello, I'm</p>
+        <h1>Lyzzah Mhae Artillera Garcia</h1>
+        <h2>Junior Front End Developer</h2>
+        <p class="intro">
+          A 3rd-year Information Technology student who enjoys building clean,
+          user-friendly web and mobile interfaces.
+        </p>
+        <a href="#projects" class="btn btn-primary">View My Projects</a>
+        <a href="Lyzzah_Garcia_Resume.pdf" class="btn btn-outline" download>Download Resume</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About <span>Me</span></h2>
+        <p class="section-sub">A little about who I am and what I do.</p>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I am a Junior Front End Developer with three years of academic project
+              experience building web and mobile user interfaces. I work with HTML, CSS,
+              Bootstrap 5, jQuery, and Flutter (Dart), and I have experience connecting
+              interfaces to REST APIs.
+            </p>
+            <p>
+              I am passionate about creating practical, easy-to-use designs, learning by
+              doing, and working collaboratively with a team.
+            </p>
+            <h3 class="mini-title">Interests</h3>
+            <div class="chips">
+              <span class="chip">Front End Web Development</span>
+              <span class="chip">UI / UX Design</span>
+              <span class="chip">Mobile App Interfaces</span>
+              <span class="chip">Responsive Design</span>
+            </div>
+          </div>
+          <div class="edu-card">
+            <h3>BS Information Technology</h3>
+            <p>Northeastern College<br>Santiago City, Isabela</p>
+            <p>2024 – Present</p>
+            <span class="tag">Expected Graduation: 2028</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <p class="section-sub">Technologies and strengths I bring to a team.</p>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <h3>Front End Development</h3>
+            <div class="chips">
+              <span class="chip">HTML</span>
+              <span class="chip">CSS</span>
+              <span class="chip">Bootstrap 5</span>
+              <span class="chip">jQuery</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Mobile UI &amp; Integration</h3>
+            <div class="chips">
+              <span class="chip">Flutter (Dart)</span>
+              <span class="chip">REST API</span>
+            </div>
+          </div>
+          <div class="skill-card">
+            <h3>Professional Skills</h3>
+            <div class="chips">
+              <span class="chip">Problem-solving</span>
+              <span class="chip">Teamwork</span>
+              <span class="chip">Adaptability</span>
+              <span class="chip">Willingness to learn</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Academic <span>Projects</span></h2>
+        <p class="section-sub">Projects I have worked on during my studies.</p>
+        <div class="projects-grid">
+          <div class="project-card">
+            <div class="icon">&#127947;</div>
+            <h3>CBGFitness Center Management System</h3>
+            <p>A management system for a fitness center with web and mobile access.</p>
+            <p class="contrib"><strong>My contribution:</strong> Worked on the web and mobile interface components and used Supabase for the project's data and application services.</p>
+            <span class="tech">PHP · Flutter (Dart) · Supabase</span>
+          </div>
+          <div class="project-card">
+            <div class="icon">&#128221;</div>
+            <h3>Student Task Manager System</h3>
+            <p>A mobile application that helps students monitor their tasks digitally.</p>
+            <p class="contrib"><strong>My contribution:</strong> Developed the mobile application centered on digital student task monitoring.</p>
+            <span class="tech">Mobile Application</span>
+          </div>
+          <div class="project-card">
+            <div class="icon">&#127858;</div>
+            <h3>Food and Recipe Search App</h3>
+            <p>A mobile app for searching food and recipe information.</p>
+            <p class="contrib"><strong>My contribution:</strong> Built the search application that retrieves and displays recipe data through a REST API.</p>
+            <span class="tech">Mobile Application · REST API</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certificates -->
+    <section id="certificates">
+      <div class="container">
+        <h2 class="section-title">Professional <span>Development</span></h2>
+        <p class="section-sub">Certificates from seminars, trainings, and courses I have completed.</p>
+        <div class="cert-grid">
+          <!-- To add another certificate: copy this whole cert-card block and change the image, title, and details. -->
+          <div class="cert-card">
+            <a href="certificates/networking-basics.jpg" target="_blank" rel="noopener">
+              <img src="certificates/networking-basics.jpg" alt="Getting Started with Networking Basics certificate">
+            </a>
+            <div class="cert-info">
+              <span class="cert-type">Course</span>
+              <h3>Getting Started with Networking Basics</h3>
+              <p>Cisco Networking Academy</p>
+              <p>Completed · September 2026</p>
+              <a href="certificates/networking-basics.jpg" target="_blank" rel="noopener" class="cert-link">View Certificate &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resume -->
+    <section id="resume">
+      <div class="container">
+        <div class="resume-box">
+          <div>
+            <h2 class="section-title">My <span>Resume</span></h2>
+            <p class="section-sub">Download a copy of my resume in PDF format.</p>
+          </div>
+          <a href="Lyzzah_Garcia_Resume.pdf" class="btn btn-primary" download>&#11015; Download Resume (PDF)</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+      <div class="container">
+        <h2 class="section-title">Get In <span>Touch</span></h2>
+        <p class="section-sub">I'm open to internship and junior front end developer opportunities. Feel free to send me an email!</p>
+        <a href="mailto:glyzzahmhae@gmail.com" class="btn btn-primary">&#9993; Email Me</a>
+        <a href="https://github.com/lyzzahmhae" class="btn btn-outline" target="_blank" rel="noopener">GitHub</a>
+        <p class="email-text">glyzzahmhae@gmail.com</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> Lyzzah Mhae Artillera Garcia. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(link =>
+      link.addEventListener('click', () => navLinks.classList.remove('open'))
+    );
+    // Current year in footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
 
